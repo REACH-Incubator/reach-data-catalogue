@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ckan
+  labels:
+    app: ckan
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ckan
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ckan
+    spec:
+      containers:
+        - name: ckan
+          image: memaldi/ckan:2.9
+          env:
+          - name: CKAN_SQLALCHEMY_URL
+            valueFrom:
+              secretKeyRef:
+                key: CKAN_SQLALCHEMY_URL
+                name: ckan-secret
+          - name: CKAN_STORAGE_PATH
+            valueFrom:
+              configMapKeyRef:
+                key: CKAN_STORAGE_PATH
+                name: ckan-config
+          - name: CKAN_SOLR_URL
+            valueFrom:
+              configMapKeyRef:
+                key: CKAN_SOLR_URL
+                name: ckan-config
+          - name: CKAN_REDIS_URL
+            valueFrom:
+              configMapKeyRef:
+                key: CKAN_REDIS_URL
+                name: ckan-config
+          - name: CKAN_SITE_URL
+            valueFrom:
+              configMapKeyRef:
+                key: CKAN_SITE_URL
+                name: ckan-config
+          volumeMounts:
+            - name: ckan-data
+              mountPath: /var/lib/ckan
+              subPath: ckan-data              
+      volumes:
+        - name: ckan-data
+          persistentVolumeClaim:
+            claimName: ckan-pvc
