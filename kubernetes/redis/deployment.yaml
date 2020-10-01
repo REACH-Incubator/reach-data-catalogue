@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ckan-redis
+  labels:
+    app: ckan-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ckan-redis
+  template:
+    metadata:
+      labels:
+        app: ckan-redis
+    spec:
+      containers:
+        - name: ckan-redis
+          image: centos/redis-5-centos7

@@ -16,9 +16,13 @@ spec:
       labels:
         app: ckan
     spec:
+      securityContext:
+        runAsUser: 900
+        runAsGroup: 900
+        fsGroup: 900
       containers:
         - name: ckan
-          image: memaldi/ckan:2.9
+          image: memaldi/ckan:2.8.5
           env:
           - name: CKAN_SQLALCHEMY_URL
             valueFrom:
@@ -45,11 +49,25 @@ spec:
               configMapKeyRef:
                 key: CKAN_SITE_URL
                 name: ckan-config
+          - name: CKAN_DATAPUSHER_URL
+            valueFrom:
+              configMapKeyRef:
+                key: CKAN_DATAPUSHER_URL
+                name: ckan-config
           volumeMounts:
             - name: ckan-data
               mountPath: /var/lib/ckan
-              subPath: ckan-data              
+              subPath: ckan-data
+            - name: ckan-config
+              mountPath: /etc/ckan/production.ini
+              subPath: production.ini       
       volumes:
+        - name: ckan-config
+          secret:
+            secretName: ckan-secret
+            items:
+            - key: CKAN_CONFIG
+              path: production.ini
         - name: ckan-data
           persistentVolumeClaim:
             claimName: ckan-pvc

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ckan-db
+  labels:
+    app: ckan-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ckan-db
+  template:
+    metadata:
+      labels:
+        app: ckan-db
+    spec:
+      containers:
+        - name: ckan-db
+          image: postgres:9
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_USER
+                  name: ckan-secret
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: ckan-secret
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: ckan-db
+          volumeMounts:
+            - mountPath: /var/lib/pgsql/data
+              name: ckan-db
+              subPath: db
+      volumes:
+      - name: ckan-db
+        persistentVolumeClaim:
+          claimName: ckan-db

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ckan-solr
+  labels:
+    app: ckan-solr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ckan-solr
+  template:
+    metadata:
+      labels:
+        app: ckan-solr
+    spec:
+      containers:
+        - name: ckan-solr
+          image: memaldi/ckan-solr
+          # command: ["solr-create"]
+          # args: ["-c", "ckan", "-d", "/conf", "-force"]
+          # volumeMounts:
+          #   - name: solr-data
+          #     mountPath: /opt/solr/server/solr/ckan
+          #     subPath: solr-data
+      # volumes:
+      #   - name: solr-data
+      #     persistentVolumeClaim:
+      #       claimName: ckan-pvc

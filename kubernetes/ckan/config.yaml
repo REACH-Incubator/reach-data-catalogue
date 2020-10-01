@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ckan-config
+data:
+  POSTGRES_DB: ckan_default
+  CKAN_STORAGE_PATH: /var/lib/ckan
+  CKAN_SOLR_URL: http://ckan-solr:8983/solr/ckan
+  CKAN_REDIS_URL: redis://ckan-redis:6379/0
+  CKAN_SITE_URL: https://reach-data-catalogue.apps.openshift.deustotech.eu
+  CKAN_DATAPUSHER_URL: http://ckan:5000
