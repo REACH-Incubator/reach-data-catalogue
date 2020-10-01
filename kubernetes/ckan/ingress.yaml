@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  name: reach-data-catalogue.apps.openshift.deustotech.eu
+spec:
+  rules:
+  - host: reach-data-catalogue.apps.openshift.deustotech.eu
+    http:
+      paths:
+      - backend:
+          serviceName: ckan
+          servicePort: 5000
+  tls:
+  - hosts:
+    - reach-data-catalogue.apps.openshift.deustotech.eu
+    secretName: reach-data-catalogue-cert
