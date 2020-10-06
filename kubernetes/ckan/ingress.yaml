@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-  name: reach-data-catalogue.apps.openshift.deustotech.eu
+  name: reach-data-catalogue.apps.deustotech.eu
 spec:
   rules:
-  - host: reach-data-catalogue.apps.openshift.deustotech.eu
+  - host: reach-data-catalogue.apps.deustotech.eu
     http:
       paths:
       - backend:
@@ -14,5 +14,5 @@ spec:
           servicePort: 5000
   tls:
   - hosts:
-    - reach-data-catalogue.apps.openshift.deustotech.eu
-    secretName: reach-data-catalogue-cert
+    - reach-data-catalogue.apps.deustotech.eu
+    secretName: reach-data-catalogue-cert-new
