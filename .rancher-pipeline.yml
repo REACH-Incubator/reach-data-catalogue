@@ -1,0 +1,14 @@
+﻿stages:
+- name: Build Data Catalogue Image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: reach-data-catalogue:${CICD_EXECUTION_SEQUENCE}
+      registry: 127.0.0.1:34418
+- name: Deploy CKAN
+  steps:
+  - applyYamlConfig:
+      path: ./kubernetes/ckan/deployment.yaml
+timeout: 60
+notification: {}
