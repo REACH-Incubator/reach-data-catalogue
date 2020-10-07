@@ -11,4 +11,9 @@ stages:
   - applyYamlConfig:
       path: ./kubernetes/ckan/deployment.yaml
 timeout: 60
-notification: {}
+notification:
+  recipients:
+  - recipient: m.emaldi@deusto.es
+    notifier: c-tfxjq:n-245vd
+  condition:
+  - Changed
