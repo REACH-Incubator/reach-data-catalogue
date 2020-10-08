@@ -16,15 +16,16 @@ spec:
       labels:
         app: ckan
     spec:
-      imagePullSecrets:
-        - name: pipeline-docker-registry  
+      # imagePullSecrets:
+      #   - name: pipeline-docker-registry  
       securityContext:
         runAsUser: 900
         runAsGroup: 900
         fsGroup: 900
       containers:
         - name: ckan
-          image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          # image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          image: reachincubator/reach-data-catalogue
           env:
           - name: CKAN_SQLALCHEMY_URL
             valueFrom:
