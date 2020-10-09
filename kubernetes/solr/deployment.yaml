@@ -14,16 +14,20 @@ spec:
       labels:
         app: ckan-solr
     spec:
+      securityContext:
+        runAsUser: 8983
+        runAsGroup: 8983
+        fsGroup: 8983
       containers:
         - name: ckan-solr
-          image: memaldi/ckan-solr
-          # command: ["solr-create"]
-          # args: ["-c", "ckan", "-d", "/conf", "-force"]
-          # volumeMounts:
-          #   - name: solr-data
-          #     mountPath: /opt/solr/server/solr/ckan
-          #     subPath: solr-data
-      # volumes:
-      #   - name: solr-data
-      #     persistentVolumeClaim:
-      #       claimName: ckan-pvc
+          image: memaldi/ckan-solr:v2.7.2
+          command: ["solr-create"]
+          args: ["-c", "ckan", "-d", "/conf"]
+          volumeMounts:
+            - name: solr-data
+              mountPath: /opt/solr/server/solr/ckan
+              subPath: solr-data
+      volumes:
+        - name: solr-data
+          persistentVolumeClaim:
+            claimName: ckan-pvc
