@@ -30,4 +30,4 @@ spec:
       volumes:
         - name: solr-data
           persistentVolumeClaim:
-            claimName: ckan-pvc
+            claimName: solr-pvc
