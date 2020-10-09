@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  name: data.reach-incubator.eu
+spec:
+  rules:
+  - host: data.reach-incubator.eu
+    http:
+      paths:
+      - backend:
+          serviceName: ckan
+          servicePort: 5000
+  tls:
+  - hosts:
+    - data.reach-incubator.eu
+    secretName: data-reach-incubator-eu-cert
