@@ -21,7 +21,7 @@ spec:
         - name: pipeline-docker-registry
       containers:
         - name: ckan
-          image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          image: ${CICD_REGISTRY}/${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
           # image: reachincubator/reach-data-catalogue:0.0.8
           env:
           - name: CKAN_SQLALCHEMY_URL
