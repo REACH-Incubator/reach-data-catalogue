@@ -25,7 +25,7 @@ spec:
       containers:
         - name: ckan
           # image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
-          image: reachincubator/reach-data-catalogue:0.0.6
+          image: reachincubator/reach-data-catalogue:0.0.7
           env:
           - name: CKAN_SQLALCHEMY_URL
             valueFrom:
@@ -62,7 +62,7 @@ spec:
               mountPath: /var/lib/ckan
               subPath: ckan-data
             - name: ckan-config
-              mountPath: /etc/ckan/production.ini
+              mountPath: /etc/ckan/default/production.ini
               subPath: production.ini       
       volumes:
         - name: ckan-config
