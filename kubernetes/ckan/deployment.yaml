@@ -4,6 +4,7 @@ metadata:
   name: ckan
   labels:
     app: ckan
+  namespace: reach-data-catalogue
 spec:
   replicas: 1
   selector:
@@ -16,12 +17,6 @@ spec:
       labels:
         app: ckan
     spec:
-      # imagePullSecrets:
-      #   - name: pipeline-docker-registry  
-      # securityContext:
-      #   runAsUser: 900
-      #   runAsGroup: 900
-      #   fsGroup: 900
       containers:
         - name: ckan
           image: reach-data-catalogue:${CICD_EXECUTION_SEQUENCE}
