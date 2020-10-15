@@ -23,7 +23,7 @@ spec:
         - name: ckan
           # image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
           # image: reachincubator/reach-data-catalogue:0.0.8
-          image: registry.apps.deustotech.eu/reach/reach-dc:${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
           env:
           - name: CKAN_SQLALCHEMY_URL
             valueFrom:
