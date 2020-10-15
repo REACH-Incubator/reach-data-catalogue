@@ -4,7 +4,9 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
-      tag: reach-dc:${CICD_EXECUTION_SEQUENCE}
+      tag: /reach/reach-dc:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: registry.apps.deustotech.eu
 - name: Deploy CKAN
   steps:
   - applyYamlConfig:
