@@ -34,7 +34,7 @@ spec:
                   key: POSTGRES_DB
                   name: ckan-db
           volumeMounts:
-            - mountPath: /var/lib/pgsql/data
+            - mountPath: /var/lib/postgresql/data
               name: ckan-db
               subPath: db
       volumes:
