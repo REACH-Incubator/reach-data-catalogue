@@ -55,6 +55,11 @@ spec:
               configMapKeyRef:
                 key: CKAN_DATAPUSHER_URL
                 name: ckan-config
+          - name: GA_ID
+            valueFrom:
+              secretKeyRef:
+                key: GA_ID
+                name: ckan-secret
           volumeMounts:
             - name: ckan-data
               mountPath: /var/lib/ckan
