@@ -12,4 +12,4 @@ steps:
       from_secret: REGISTRY_PASSWORD
     repo: registry.apps.deustotech.eu/reach/reach-dc
     registry: registry.apps.deustotech.eu
-    tags: latest
+    tags: ${DRONE_BUILD_NUMBER}
