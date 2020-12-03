@@ -12,3 +12,4 @@ steps:
       from_secret: REGISTRY_PASSWORD
     repo: registry.apps.deustotech.eu/reach/reach-dc
     tags: latest
+    debug: true
