@@ -7,6 +7,8 @@ stages:
       tag: reach/reach-dc:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
       registry: registry.apps.deustotech.eu
+    env:
+      PLUGIN_DEBUG: "true"
 - name: Deploy CKAN
   steps:
   - applyYamlConfig:
