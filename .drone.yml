@@ -13,3 +13,11 @@ steps:
     repo: registry.apps.deustotech.eu/reach/reach-dc
     registry: registry.apps.deustotech.eu
     tags: ${DRONE_BUILD_NUMBER}
+
+  - name: deploy
+    image: danielgormly/drone-plugin-kube:0.0.1
+    settings:
+      template: kubernetes/ckan/deployment.yaml
+      server: https://rancher.deustotech.eu/k8s/clusters/c-tfxjq
+      token:
+        from_secret: SAC_TOKEN
