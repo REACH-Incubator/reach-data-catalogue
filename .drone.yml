@@ -14,6 +14,14 @@ steps:
       registry: registry.apps.deustotech.eu
       tags: ${DRONE_BUILD_NUMBER}
 
+  - name: variable-replacement
+    image: alpine
+    commands:
+    - apk add gettext
+    - cat kubernetes/ckan/deployment.yaml | envsubst > kubernetes/ckan/deployment-dist.yaml
+    environment:
+      DRONE_BUILD_NUMBER: ${DRONE_BUILD_NUMBER}
+
   - name: deploy
     image: sinlead/drone-kubectl
     settings:
@@ -21,4 +29,4 @@ steps:
       kubernetes_token:
         from_secret: SAC_TOKEN
     commands:
-      - kubectl apply -f kubernetes/ckan/deployment.yaml
+      - kubectl apply -f kubernetes/ckan/deployment-dist.yaml
