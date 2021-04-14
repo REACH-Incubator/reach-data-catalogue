@@ -21,4 +21,4 @@ steps:
       kubernetes_token:
         from_secret: SAC_TOKEN
       commands:
-      - kubectl apply -f kubernetes/CKAN/deployment.yaml
+      - kubectl apply -f kubernetes/ckan/deployment.yaml
