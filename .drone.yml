@@ -13,6 +13,7 @@ steps:
       repo: registry.apps.deustotech.eu/reach/reach-dc
       registry: registry.apps.deustotech.eu
       tags: ${DRONE_BUILD_NUMBER}
+      no_cache: True
 
   - name: variable-replacement
     image: alpine
